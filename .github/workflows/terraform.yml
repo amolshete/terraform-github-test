@@ -104,7 +104,7 @@ jobs:
           run: echo "Approve or reject the Terraform plan manually"
           
   terraform-apply:
-    needs: manual-approval
+    needs: terraform
     runs-on: ubuntu-latest
     steps:
     - name: Set up Terraform
@@ -112,8 +112,8 @@ jobs:
       with:
         terraform_version: 0.14.7
 
-    - name: Checkout
-      uses: actions/checkout@v3
+    # - name: Checkout
+    #   uses: actions/checkout@v3
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
