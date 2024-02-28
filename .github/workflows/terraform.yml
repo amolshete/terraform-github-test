@@ -118,14 +118,12 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 0.14.7
-        
-    - name: Download Terraform Configuration
-      uses: actions/download-artifact@v2
-      with:
-        name: terraform-config
-        
-    # - name: Checkout
-    #   uses: actions/checkout@v3
+    
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Terraform Init
+      run: terraform init
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
