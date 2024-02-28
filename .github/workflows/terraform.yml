@@ -112,8 +112,12 @@ jobs:
       with:
         terraform_version: 0.14.7
 
+    - name: Checkout
+      uses: actions/checkout@v3
+
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+      
       
     
