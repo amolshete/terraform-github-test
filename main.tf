@@ -8,17 +8,9 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "ap-south-1"
+module "example_instance" {
+  source = "./instance-module"
+
+  instance_ami    = "ami-03f4878755434977f"
+  instance_type   = "t2.micro"
 }
-
-
-resource "aws_instance" "test-instance" {
-  ami           = "ami-03f4878755434977f"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "example-instance"
-  }
-}
-###
