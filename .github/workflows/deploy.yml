@@ -2,6 +2,12 @@ name: 'Terraform-apply'
 
 on:
  workflow_dispatch:
+    inputs:
+      name: 
+        description: "put the target module name"
+        default: module.
+        required: true
+        
   # push:
   #   branches: [ "master" ]
   # pull_request:
@@ -34,6 +40,6 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' #&& github.event_name == 'push'
       run: |
-        terraform apply -auto-approve -input=false
+        terraform apply -target="${{ github.event.inputs.name }}" -auto-approve -input=false
       
       
