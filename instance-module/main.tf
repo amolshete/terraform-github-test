@@ -6,4 +6,7 @@ provider "aws" {
 resource "aws_instance" "example_instance" {
   ami           = var.instance_ami
   instance_type = var.instance_type
+  tags = {
+    Name = "tf-example"
+  }
 }
